@@ -7,3 +7,9 @@ This repository is a summary of steps taken and configurations used in this blog
 3. [Winbind in SmartOS, Part III (Polishing)](https://ops.faithlife.com/?p=179)
 
 The [setup.sh](setup.sh) script is a summary of all command-line steps taken in the series and can be used for **testing purposes** in your environment. No error checking is implemented and an environment of base-64 version 15.2.0+ is assumed, for the sake of readability, so this script is **not recommended for production use**. Adaptation of this script to your choice of configuration management solution is recommended.
+
+These details from the series are not covered in setup.sh:
+
+* [Working with More than 16 Group Memberships](https://ops.faithlife.com/?p=179#memberships)
+* [Updating Passwords](https://ops.faithlife.com/?p=179#passwd)
+* [Working with Long Hostnames](https://ops.faithlife.com/?p=179#hostname)
