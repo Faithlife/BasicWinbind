@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+
+HOMEDIRPATH=/home
+PHYSICALDIRPATH=/export/home
+
+# The folder being requested is first argument, we assume at
+# this point that it is a user
+user=$1
+group=$(id -gn "$user")
+home_dir=$(getent passwd "$user" | cut -d: -f6)
+physical_dir="$PHYSICALDIRPATH/$user"
+
+# Only create a directory if it doesn't exist
+if [ ! -d "$physical_dir" ]; then
+  # Sanity check, ensure that this is actually a user and that
+  # his home directory is in the expected location
+  if [[ "$home_dir" != $HOMEDIRPATH/* ]]; then
+    exit
+  fi
+
+  mkdir -p "$PHYSICALDIRPATH"
+  # Use the shell defaults in /etc/skel to populate the initial
+  # home directory
+  cp -r /etc/skel "$physical_dir"
+  chown -R "$user":"$group" "$physical_dir"
+fi
+
+echo "localhost:$physical_dir"
