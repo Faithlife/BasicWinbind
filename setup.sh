@@ -37,6 +37,8 @@ crle -64 -c /var/ld/64/ld.config -l /opt/local/lib -u
 echo Configuring PAM
 cp pam.conf /etc/
 cp pam_winbind.conf /etc/security/
+mkdir /opt/i386/opt/local/lib/samba/security/64
+ln -s /opt/local/lib/samba/security/pam_winbind.so /opt/i386/opt/local/lib/samba/security/64/
 
 echo Limiting access by user or group
 echo "require_membership_of = $user,$group" >> /etc/security/pam_winbind.conf
