@@ -54,6 +54,10 @@ echo "%$group ALL=(ALL) ALL" >> /opt/local/etc/sudoers
 echo Closing SSH key loophole
 echo "DenyGroups \"$disabled_users_group\"" >> /etc/ssh/sshd_config
 
+echo Allowing users to query user and group names
+chmod 755 /opt/local/lib/samba/private
+chmod 755 /opt/i386/opt/local/lib/samba/private
+
 echo Restarting services
 svcadm restart ssh
 svcadm restart cron
